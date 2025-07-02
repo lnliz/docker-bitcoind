@@ -1,4 +1,4 @@
-lncm/bitcoind
+lnliz/bitcoind
 =============
 
 [![Build Status]][builds]
@@ -6,23 +6,23 @@ lncm/bitcoind
 [![Docker Image Size]][lnd-docker-hub]
 [![Docker Pulls Count]][lnd-docker-hub]
 
-[Build Status]: https://github.com/lncm/docker-bitcoind/workflows/Build%20&%20deploy%20on%20git%20tag%20push/badge.svg
-[builds]: https://github.com/lncm/docker-bitcoind/actions?query=workflow%3A%22Build+%26+deploy+on+git+tag+push%22
+[Build Status]: https://github.com/lnliz/docker-bitcoind/workflows/Build%20&%20deploy%20on%20git%20tag%20push/badge.svg
+[builds]: https://github.com/lnliz/docker-bitcoind/actions?query=workflow%3A%22Build+%26+deploy+on+git+tag+push%22
 
-[gh_last_release_svg]: https://img.shields.io/github/v/release/lncm/docker-bitcoind?sort=semver
-[gh_last_release_url]: https://github.com/lncm/docker-bitcoind/releases/latest
+[gh_last_release_svg]: https://img.shields.io/github/v/release/lnliz/docker-bitcoind?sort=semver
+[gh_last_release_url]: https://github.com/lnliz/docker-bitcoind/releases/latest
 
-[Docker Image Size]: https://img.shields.io/microbadger/image-size/lncm/bitcoind.svg
-[Docker Pulls Count]: https://img.shields.io/docker/pulls/lncm/bitcoind.svg?style=flat
-[lnd-docker-hub]: https://hub.docker.com/r/lncm/bitcoind
+[Docker Image Size]: https://img.shields.io/microbadger/image-size/lnliz/bitcoind.svg
+[Docker Pulls Count]: https://img.shields.io/docker/pulls/lnliz/bitcoind.svg?style=flat
+[lnd-docker-hub]: https://hub.docker.com/r/lnliz/bitcoind
 
 
-This repo builds [`bitcoind`] in an [auditable way](https://github.com/lncm/docker-bitcoind), and packages it into a minimal Docker containers provided for various CPU architectures.
+This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/docker-bitcoind), and packages it into a minimal Docker containers provided for various CPU architectures.
 
 [`bitcoind`]: https://github.com/bitcoin/bitcoin
 
 
-> The work here was initially based on [ruimarinho/docker-bitcoin-core](https://github.com/ruimarinho/docker-bitcoin-core/), but has significantly diverged since.
+> The work here was initially based on [lncm/docker-bitcoind](https://github.com/lncm/docker-bitcoind/), but has diverged since.
 
 
 #### Details
@@ -44,26 +44,22 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lncm/dock
 * Each _minor_ version is stored in a separate directory (for the ease of backporting patches)
 
 
-[`git-tags`]: https://github.com/lncm/docker-lnd/tags
-[`opentimestamps`]: https://github.com/opentimestamps/opentimestamps-client/blob/master/doc/git-integration.md#usage
-[Alpine]: https://github.com/lncm/docker-bitcoind/blob/6beae356ba16ee0297427c6401cd34f93044e256/0.19/Dockerfile#L11-L12
-[`qemu`]: https://github.com/meeDamian/simple-qemu
-[here]: https://github.com/lncm/docker-berkeleydb
-[Docker Manifest]: https://github.com/lncm/docker-bitcoind/blob/6beae356ba16ee0297427c6401cd34f93044e256/.github/workflows/on-tag.yml#L177-L193
-[build automatically]: https://github.com/lncm/docker-bitcoind/blob/6beae356ba16ee0297427c6401cd34f93044e256/.github/workflows/on-tag.yml
-[auditable trace]: https://github.com/lncm/docker-bitcoind/runs/507498587?check_suite_focus=true
-[Docker Hub]: https://github.com/lncm/docker-bitcoind/blob/6beae356ba16ee0297427c6401cd34f93044e256/.github/workflows/on-tag.yml#L167-L193
-[Github Releases]: https://github.com/lncm/docker-bitcoind/blob/6beae356ba16ee0297427c6401cd34f93044e256/.github/workflows/on-tag.yml#L196-L203
-[`strip`ped]: https://github.com/lncm/docker-bitcoind/blob/6beae356ba16ee0297427c6401cd34f93044e256/0.19/Dockerfile#L176
-
-
 > **NOTE:** ZMQ `block` and `tx` ports are set to `28332` and `28333` respectively. 
 
 
 ## Tags
 
-> **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/bitcoind/tags
+> **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
+* `v29.0`
+* `v28.2`
+* `v28.1`
+* `v28.0`
+* 
+* `v27.2`
+* `v27.1`
+* `v27.0`
+*
 * `v26.0`
 * `v25.1`
 * `v25.0`
@@ -88,24 +84,24 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lncm/dock
 First pull the image from [Docker Hub]:
 
 ```bash
-docker pull lncm/bitcoind:v25.0
+docker pull lnliz/bitcoind:v29.0
 ```
 
 > **NOTE:** Running above will automatically choose native architecture of your CPU.
 
-[Docker Hub]: https://hub.docker.com/r/lncm/bitcoind
+[Docker Hub]: https://hub.docker.com/r/lnliz/bitcoind
 
 Or, to pull a specific CPU architecture:
 
 ```bash
-docker pull lncm/bitcoind:v25.0-arm64v8
+docker pull lnliz/bitcoind:v29.0-arm64v8
 ```
 
 #### Start
 
 First of all, create a directory in your home directory called `.bitcoin`
 
-Next, create a config file. You can take a look at the following sample: thebox-compose-system ([1](https://github.com/lncm/thebox-compose-system/blob/master/bitcoin/bitcoin.conf)).
+Next, create a config file. You can take a look at the following sample: thebox-compose-system ([1](https://github.com/lnliz/thebox-compose-system/blob/master/bitcoin/bitcoin.conf)).
 
 Some guides on how to configure bitcoin can be found [here](https://github.com/bitcoin/bitcoin/blob/master/doc/bitcoin-conf.md) (bitcoin git repo)
 
@@ -119,7 +115,7 @@ docker run  -it  --rm  --detach \
     -p 28332:28332 \
     -p 28333:28333 \
     --name bitcoind \
-    lncm/bitcoind:v25.0
+    lnliz/bitcoind:v29.0
 ```
 
 That will run bitcoind such that:
@@ -164,7 +160,7 @@ services:
   bitcoin:
     container_name: bitcoind
     user: 1000:1000
-    image: lncm/bitcoind:v25.0
+    image: lnliz/bitcoind:v29.0
     volumes:
       - ./bitcoin:/data/.bitcoin
     restart: on-failure
@@ -194,4 +190,5 @@ If you have a different setup, please do the following
 # where ".bitcoin" is the data directory
 sudo chown -R 1000.1000 $HOME/.bitcoin
 ```
+
 

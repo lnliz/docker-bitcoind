@@ -155,7 +155,6 @@ jobs:
       - name: Version-tag all images
         run: |
           for arch in $(docker images "$APP" --format "{{.Tag}}"); do
-            docker tag  "$APP:$arch"  "$SLUG:$VERSION-$arch-build$BUILD"
             docker tag  "$APP:$arch"  "$SLUG:$VERSION-$arch"
           done
 
@@ -164,10 +163,10 @@ jobs:
 
       - name: Login to Docker Hub
         env:
-          DOCKER_USER: meedamian
+          DOCKER_USER: lnliz
         run: |
           echo "Logging in as ${DOCKER_USER}…"
-          echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u="$DOCKER_USER" --password-stdin
+          echo "${{ secrets.DOCKER_PASS }}" | docker login -u="$DOCKER_USER" --password-stdin
 
       - name: Push all images
         run: docker images "$SLUG" --format "{{.Repository}}:{{.Tag}}" | xargs -I %  docker push %
@@ -195,15 +194,3 @@ jobs:
           (cd docker-images;  sha256sum *) >> ./SHA256SUMS
           cat ./SHA256SUMS
 
-      - name: Upload images to Github Release
-        uses: meeDamian/github-release@2.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN_NOEXPIRE }}
-          name: ${{ env.VERSION }}
-          body: |
-            This release packages `bitcoind` to be on par with https://github.com/bitcoin/bitcoin/releases/tag/${{ env.VERSION }}
-          prerelease: true
-          gzip: false
-          files: >
-            docker-images/*
-            SHA256SUMS

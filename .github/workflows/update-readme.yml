@@ -1,4 +1,4 @@
-name: Update Docker Hub README everytime it changes on master
+name: Update Docker Hub README
 
 env:
     ACTIONS_ALLOW_UNSECURE_COMMANDS: true
@@ -13,17 +13,12 @@ jobs:
   sync:
     name: Update README to Docker Hub
     runs-on: ubuntu-22.04
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Environment
-        run: echo ::set-env name=SLUG::"$(echo ${GITHUB_REPOSITORY,,} | sed 's/docker-//')"
-
-      - name: Sync README.md and Description to Docker Hub
-        uses: meeDamian/sync-readme@v1.0.6
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v4
         with:
-          user: ${{ secrets.DOCKER_USER }}
-          pass: ${{ secrets.DOCKER_PASS }}
-          slug: ${{ env.SLUG }}
-          description: true
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+          repository: lnliz/bitcoind
