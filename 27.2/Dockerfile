@@ -9,7 +9,7 @@ ARG VERSION=27.2
 ARG ARCH
 
 # Define default versions so that they don't have to be repeated throughout the file
-ARG VER_ALPINE=3.20
+ARG VER_ALPINE=3.22
 
 # $USER name, and data $DIR to be used in the `final` image
 ARG USER=bitcoind

@@ -18,6 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         subver:
+          - '26.2'
+          - '27.2'
           - '28.2'
           - '29.0'
 
