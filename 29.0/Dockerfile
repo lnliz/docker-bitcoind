@@ -251,6 +251,7 @@ RUN cmake -S . -B build \
     -DBUILD_BENCH=OFF \
     -DBUILD_GUI=OFF \
     -DWITH_SQLITE=ON \
+    -DWITH_ZMQ=ON \
     -DWITH_CCACHE=OFF
 
 RUN cmake --build build -- -j$(( $(nproc) + 1 ))
