@@ -19,9 +19,6 @@ ARG DIR=/data
 #   NOTE: Only `SOURCE=git` can be used for RC releases
 ARG SOURCE=release
 
-# Choose where to get BerkeleyDB from, options: prebuilt, compile
-#   NOTE: When compiled here total execution time exceeds allowed CI limits, so pre-built one is used by default
-ARG BDB_SOURCE=prebuilt
 
 
 
@@ -183,24 +180,6 @@ FROM preparer-${SOURCE} AS preparer
 
 
 #
-## `berkeleydb-prebuilt` downloads a pre-built BerkeleyDB to make sure
-#       the overall build time of this Dockerfile fits within CI limits.
-#
-FROM lncm/berkeleydb:v4.8.30.NC${ARCH:+-${ARCH}} AS berkeleydb-prebuilt
-
-#
-## `berkeleydb-compile` builds BerkeleyDB from source using script provided in bitcoind repo.
-#
-FROM alpine:${VER_ALPINE} AS berkeleydb-compile
-# TODO: implement ^^
-RUN echo "Not implemented" && exit 1
-
-
-FROM berkeleydb-${BDB_SOURCE} AS berkeleydb
-
-
-
-#
 ## `builder` builds Bitcoin Core regardless on how the source, and BDB code were obtained.
 #
 # NOTE: this stage is emulated using QEMU
@@ -223,9 +202,6 @@ RUN apk add --no-cache \
     linux-headers \
     zeromq-dev
 
-# Fetch pre-built berkeleydb
-COPY  --from=berkeleydb /opt/  /opt/
-
 # Change to the extracted directory
 WORKDIR /bitcoin-$VERSION/
 
@@ -234,25 +210,27 @@ COPY  --from=preparer /bitcoin-$VERSION/  ./
 
 ENV BITCOIN_PREFIX /opt/bitcoin-$VERSION
 
-# TODO: Try to optimize on passed params
+#
+# BUILD_TESTS is slow but needed for bitcoin-wallet tool
+#
 RUN cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX="$BITCOIN_PREFIX" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_EXE_LINKER_FLAGS="-L/opt/db4/lib/" \
     -DCMAKE_CXX_FLAGS="-I/opt/db4/include/" \
-    -DBUILD_BITCOIN_WALLET=ON \
-    -DBUILD_BITCOIN_CLI=ON \
-    -DBUILD_BITCOIN_UTILS=ON \
-    -DBUILD_BITCOIN_TX=OFF \
-    -DENABLE_SHARED=OFF \
-    -DENABLE_STATIC=ON \
+    -DBUILD_CLI=ON \
+    -DBUILD_UTIL=ON \
+    -DBUILD_TX=ON \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_WALLET=ON \
     -DREDUCE_EXPORTS=ON \
-    -DBUILD_TESTS=OFF \
+    -DBUILD_TESTS=ON \
     -DBUILD_BENCH=OFF \
     -DBUILD_GUI=OFF \
+    -DBUILD_GUI_TESTS=OFF \
     -DWITH_SQLITE=ON \
     -DWITH_ZMQ=ON \
-    -DWITH_CCACHE=OFF
+    -DWITH_CCACHE=ON
 
 RUN cmake --build build -- -j$(( $(nproc) + 1 ))
 RUN cmake --install build
