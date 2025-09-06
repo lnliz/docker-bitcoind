@@ -19,7 +19,7 @@ jobs:
       matrix:
         subver:
           - '28.2'
-          - '29.0'
+          - '29.1'
 
         arch:
           - amd64
