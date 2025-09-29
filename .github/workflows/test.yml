@@ -18,8 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         subver:
-          - '28.2'
           - '29.1'
+          - '29.1.knots20250903'
 
         arch:
           - amd64
