@@ -52,30 +52,14 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
 * `v29.1`
+* `v29.1.knots20250903`
 * `v29.0`
+
 * `v28.2`
 * `v28.1`
 * `v28.0`
 * 
 * `v27.2`
-* `v27.1`
-* `v27.0`
-*
-* `v26.0`
-* `v25.1`
-* `v25.0`
-* `v24.0.1`
-* `v23.0`
-* `v22.0`
-* `v0.21.1`
-* `v0.21.0`
-* `v0.20.0`
-* `v0.19.1`
-* `v0.19.0.1`
-* `v0.18.1`
-* `v0.17.2`
-* `v0.16.3`
-* `v0.15.2`
 
 
 ## Usage
@@ -129,6 +113,15 @@ That will run bitcoind such that:
 * created container will get named `bitcoind`,
 * within the container, `bitcoind` binary is run as unprivileged user `bitcoind` (`UID=1000`),
 * that command will run the container in the background and print the ID of the container being run.
+
+
+#### Knots
+
+You can also use [Bitcoin Knots](https://github.com/bitcoinknots/bitcoin) by using different image tag:
+
+```bash
+docker pull lnliz/bitcoind:v29.1.knots20250903
+```
 
 
 #### Interact

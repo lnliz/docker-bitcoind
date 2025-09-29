@@ -5,11 +5,10 @@ env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
   # Capture groups within $TAG_FMT:
-  #   \1 => TAG       vX.Y.Z[.P]+build<N>
-  #   \2 => VERSION   vX.Y.Z[.P]
-  #   \3 => ignore    (captures dot, and last number-group in version)
-  #   \4 => BUILD     N
-  TAG_FMT: '^refs/tags/((v(.?[0-9]+){3,4})\+build([0-9]+))$'
+  #   \1 => TAG       vX.Y.Z[.P]+build<N> OR vX.Y.knots<date>
+  #   \2 => VERSION   vX.Y.Z[.P] OR vX.Y.knots<date>
+  #   \3 => BUILD     N (for +build format) OR empty (for knots format)
+  TAG_FMT: '^refs/tags/((v[0-9]+\.[0-9]+(\.[0-9]+)*(\+build([0-9]+)|\.knots[0-9]+)))$'
 
 
 on:
@@ -52,7 +51,7 @@ jobs:
           echo ::set-env name=DIR::"$DIR"
 
           echo ::set-env name=TAG::"$(echo "$GITHUB_REF" | sed -E "s|$TAG_FMT|\1|")"
-          echo ::set-env name=BUILD::"$(echo "$GITHUB_REF" | sed -E "s|$TAG_FMT|\4|")"
+          echo ::set-env name=BUILD::"$(echo "$GITHUB_REF" | sed -E "s|$TAG_FMT|\5|")"
 
       - name: Print ENV VARs set above
         run: |
@@ -136,7 +135,7 @@ jobs:
         run: |
           echo ::set-env name=SLUG::"$(echo ${GITHUB_REPOSITORY,,} | sed 's/docker-//')"
           echo ::set-env name=VERSION::"$(echo "$GITHUB_REF" | sed -E "s|$TAG_FMT|\2|")"
-          echo ::set-env name=BUILD::"$(echo "$GITHUB_REF" | sed -E "s|$TAG_FMT|\4|")"
+          echo ::set-env name=BUILD::"$(echo "$GITHUB_REF" | sed -E "s|$TAG_FMT|\5|")"
 
       - name: Download all build artifacts
         uses: actions/download-artifact@v4.1.7
