@@ -35,6 +35,7 @@ jobs:
 
       - name: Setup environment
         run: |
+          echo "$GITHUB_REF"
           if ! echo "$GITHUB_REF" | grep -qE "$TAG_FMT"; then
             echo "ERR: TAG must be in format: vX.Y.Z[.P]+build<N>"
             exit 1
