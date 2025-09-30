@@ -12,7 +12,6 @@ lnliz/bitcoind
 [gh_last_release_svg]: https://img.shields.io/github/v/release/lnliz/docker-bitcoind?sort=semver
 [gh_last_release_url]: https://github.com/lnliz/docker-bitcoind/releases/latest
 
-[Docker Image Size]: https://img.shields.io/microbadger/image-size/lnliz/bitcoind.svg
 [Docker Pulls Count]: https://img.shields.io/docker/pulls/lnliz/bitcoind.svg?style=flat
 [lnd-docker-hub]: https://hub.docker.com/r/lnliz/bitcoind
 
@@ -25,34 +24,12 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 > The work here was initially based on [lncm/docker-bitcoind](https://github.com/lncm/docker-bitcoind/), but has diverged since.
 
 
-#### Details
-
-* **All [`git-tags`]** <small>(and most commits)</small> **are signed** by `D8CA1776EB9265491D07CE67F546ECBEA809CB18`
-* **All [`git-tags`]** <small>(and most commits)</small> **are [`opentimestamps`]-ed**
-* **All builds aim to be maximally auditable.**  After `git tag push`, the entire process is automated, with each step printed, and the code aiming to be easy to follow
-* All builds are based on [Alpine]
-* Cross-compiled builds are done using our (also auditable) [`qemu`]
-* To fit build and complete `make check` test suite, BerkeleyDB is build separately [here]
-* Each build produces binaries for: `amd64`, `arm64v8`, and `arm32v7`
-* All architectures are aggregated under an easy-to-use [Docker Manifest]
-* All [`git-tags`] are [build automatically], and with an [auditable trace]
-* Each successful build of a `git tag` pushes result Docker image to [Docker Hub]
-* Images pushed to Docker Hub are never deleted (even if `lnd` version gets overridden, previous one is preserved)
-* All `final` images are based on Alpine for minimum base size
-* All binaries are [`strip`ped]
-* Each `git-tag` build is tagged with a unique tag number
-* Each _minor_ version is stored in a separate directory (for the ease of backporting patches)
-
-
-> **NOTE:** ZMQ `block` and `tx` ports are set to `28332` and `28333` respectively. 
-
-
-## Tags
+## Available Versions
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
-* `v29.1`
-* `v29.1.knots20250903`
+* `v29.1` (most current)
+* `v29.1.knots20250903` (most current)
 * `v29.0`
 
 * `v28.2`
@@ -60,6 +37,7 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v28.0`
 * 
 * `v27.2`
+
 
 
 ## Usage
@@ -167,6 +145,27 @@ services:
 ```
 First, ensure that the `bitcoin/` folder is in the directory containing docker-compose.yml.
 Then, Docker Compose will mount the `bitcoin/` folder to `/data/.bitcoin`.
+
+
+#### Details
+
+* **All builds aim to be maximally auditable.**  After `git tag push`, the entire process is automated, with each step printed, and the code aiming to be easy to follow
+* All builds are based on [Alpine]
+* Cross-compiled builds are done using our (also auditable) [`qemu`]
+* To fit build and complete `make check` test suite, BerkeleyDB is build separately [here]
+* Each build produces binaries for: `amd64`, `arm64v8`, and `arm32v7`
+* All architectures are aggregated under an easy-to-use [Docker Manifest]
+* All [`git-tags`] are [build automatically], and with an [auditable trace]
+* Each successful build of a `git tag` pushes result Docker image to [Docker Hub]
+* Images pushed to Docker Hub are never deleted (even if `lnd` version gets overridden, previous one is preserved)
+* All `final` images are based on Alpine for minimum base size
+* All binaries are [`strip`ped]
+* Each `git-tag` build is tagged with a unique tag number
+* Each _minor_ version is stored in a separate directory (for the ease of backporting patches)
+
+
+> **NOTE:** ZMQ `block` and `tx` ports are set to `28332` and `28333` respectively. 
+
 
 #### Troubleshooting
 
