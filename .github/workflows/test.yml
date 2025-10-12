@@ -19,6 +19,7 @@ jobs:
       matrix:
         subver:
           - '29.1'
+          - '29.1.inq'
           - '29.1.knots20250903'
 
         arch:

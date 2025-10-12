@@ -29,9 +29,11 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
 * `v29.1` (most current)
-* `v29.1.knots20250903` (most current)
+* `v29.1.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
+* `v29.1.knots20250903` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
+*
 * `v29.0`
-
+*
 * `v28.2`
 * `v28.1`
 * `v28.0`
@@ -91,6 +93,15 @@ That will run bitcoind such that:
 * created container will get named `bitcoind`,
 * within the container, `bitcoind` binary is run as unprivileged user `bitcoind` (`UID=1000`),
 * that command will run the container in the background and print the ID of the container being run.
+
+
+#### Bitcoin Inquisition
+
+You can also use [Bitcoin Inquisition](https://github.com/bitcoin-inquisition/bitcoin) by using different image tag:
+
+```bash
+docker pull lnliz/bitcoind:v29.1.inq
+```
 
 
 #### Knots
