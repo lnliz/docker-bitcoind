@@ -285,11 +285,11 @@ VOLUME $DIR/.bitcoin/
 # REST interface
 EXPOSE 8080
 
-# P2P network (mainnet, testnet & regnet respectively)
-EXPOSE 8333 18333 18444
+# P2P network (mainnet, testnet & regnet, signet respectively)
+EXPOSE 8333 18333 18444 38333
 
-# RPC interface (mainnet, testnet & regnet respectively)
-EXPOSE 8332 18332 18443
+# RPC interface (mainnet, testnet & regnet, signet respectively)
+EXPOSE 8332 18332 18443 38332
 
 # ZMQ ports (for transactions & blocks respectively)
 EXPOSE 28332 28333

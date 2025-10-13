@@ -15,18 +15,9 @@ ARG VER_ALPINE=3.22
 ARG USER=bitcoind
 ARG DIR=/data
 
-# Choose where to get bitcoind sources from, options: release, git
-#   NOTE: Only `SOURCE=git` can be used for RC releases
-ARG SOURCE=release
 
 
-
-
-#
-## `preparer-base` installs dependencies needed by both ways of fetching the source,
-#       as well as imports GPG keys needed to verify authenticity of the source.
-#
-FROM alpine:${VER_ALPINE} AS preparer-base
+FROM alpine:${VER_ALPINE} AS preparer
 
 RUN apk add --no-cache gnupg
 
@@ -133,11 +124,6 @@ RUN gpg --keyserver keyserver.ubuntu.com --recv-keys $KEYS || true
 RUN gpg --keyserver keys.openpgp.org --recv-keys $KEYS || true
 
 
-#
-## Option #1: [default] Fetch bitcoind source from release tarballs
-#
-FROM preparer-base AS preparer-release
-
 ARG VERSION
 
 # Download sigs
@@ -158,30 +144,6 @@ RUN grep "bitcoin-$VERSION.tar.gz" SHA256SUMS | sha256sum -c
 RUN tar -xzf "bitcoin-$VERSION.tar.gz" && \
     rm -f "bitcoin-$VERSION.tar.gz"
 
-#
-## Option #2: Fetch bitcoind source from GitHub
-#
-FROM preparer-base AS preparer-git
-
-ARG VERSION
-
-RUN apk add --no-cache git
-
-# Fetch the source code at a specific TAG
-RUN git clone  -b "v$VERSION"  --depth=1  https://github.com/bitcoin/bitcoin.git  "/bitcoin-$VERSION/"
-
-# Verify tag, and copy source code to predetermined location on success
-RUN cd "/bitcoin-$VERSION/" && \
-    git verify-tag "v$VERSION"
-
-
-
-#
-## Alias to go around `COPY` not accepting ARGs in value passed to `--from=`
-#
-FROM preparer-${SOURCE} AS preparer
-
-
 
 #
 ## `builder` builds Bitcoin Knots regardless on how the source, and BDB code were obtained.
@@ -191,7 +153,6 @@ FROM preparer-${SOURCE} AS preparer
 FROM ${ARCH:+${ARCH}/}alpine:${VER_ALPINE} AS builder
 
 ARG VERSION
-ARG SOURCE
 
 RUN apk add --no-cache \
     cmake \
@@ -289,11 +250,11 @@ VOLUME $DIR/.bitcoin/
 # REST interface
 EXPOSE 8080
 
-# P2P network (mainnet, testnet & regnet respectively)
-EXPOSE 8333 18333 18444
+# P2P network (mainnet, testnet & regnet, signet respectively)
+EXPOSE 8333 18333 18444 38333
 
-# RPC interface (mainnet, testnet & regnet respectively)
-EXPOSE 8332 18332 18443
+# RPC interface (mainnet, testnet & regnet, signet respectively)
+EXPOSE 8332 18332 18443 38332
 
 # ZMQ ports (for transactions & blocks respectively)
 EXPOSE 28332 28333
