@@ -18,9 +18,12 @@ jobs:
       fail-fast: false
       matrix:
         subver:
-          - '30.0'
-          - '29.1.inq'
-          - '29.1.knots20250903'
+          # only run on new version, otherwise it uses too many Actions minutes
+          - '29.2'
+
+          # - '30.0'
+          # - '29.1.inq'
+          # - '29.1.knots20250903'
 
         arch:
           - amd64
