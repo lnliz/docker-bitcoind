@@ -37,6 +37,8 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v29.1`
 * `v29.0`
 *
+* `v28.3` (recent release)
+*
 * `v28.2`
 * `v28.1`
 * `v28.0`
