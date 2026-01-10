@@ -126,7 +126,7 @@ ENV KEYS="982A193E3CE0EED535E09023188CBB2648416AD5 \
     8EA063F7D5E6E17ADE409BDC605192A3FE984A60 "
 
 RUN gpg --keyserver keyserver.ubuntu.com --recv-keys $KEYS || true
-RUN gpg --keyserver keys.openpgp.org --recv-keys $KEYS || true
+RUN gpg --keyserver keys.openpgp.org --recv-keys $KEYS
 
 
 #
