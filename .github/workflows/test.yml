@@ -19,10 +19,8 @@ jobs:
       matrix:
         subver:
           # only run on new version, otherwise it uses too many Actions minutes
-          - '30.1'
+          - '29.2'
 
-          # - '30.0'
-          # - '29.2'
           # - '29.1.inq'
           # - '29.1.knots20250903'
 

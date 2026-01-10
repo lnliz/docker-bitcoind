@@ -26,8 +26,8 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
 
-* `v30.1` ([core](https://github.com/bitcoin/bitcoin) - most current)
-* `v30.0`
+* REMOVED due to wallet migration bug ~v30.1~
+* REMOVED due to wallet migration bug ~v30.0~
 * `v29.2`
 * `v29.1.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
 * `v29.1.knots20250903` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
