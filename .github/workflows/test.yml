@@ -19,10 +19,10 @@ jobs:
       matrix:
         subver:
           # only run on new version, otherwise it uses too many Actions minutes
-          - '29.2'
+          - '29.2.knots20251110'
 
+          # - '29.2'
           # - '29.1.inq'
-          # - '29.1.knots20250903'
 
         arch:
           - amd64
