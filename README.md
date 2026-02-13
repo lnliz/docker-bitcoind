@@ -12,6 +12,7 @@ lnliz/bitcoind
 [gh_last_release_svg]: https://img.shields.io/github/v/release/lnliz/docker-bitcoind?sort=semver
 [gh_last_release_url]: https://github.com/lnliz/docker-bitcoind/releases/latest
 
+[Docker Image Size]: https://img.shields.io/docker/image-size/lnliz/bitcoind.svg
 [Docker Pulls Count]: https://img.shields.io/docker/pulls/lnliz/bitcoind.svg?style=flat
 [lnd-docker-hub]: https://hub.docker.com/r/lnliz/bitcoind
 
@@ -27,6 +28,7 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 
 * `v30.2`
 *
+* `v29.3`
 * `v29.2.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
 * `v29.2.knots20251110` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
 * `v29.2`
