@@ -29,8 +29,10 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v30.2`
 *
 * `v29.3`
+* `v29.3.knots20260210` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
 * `v29.2.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
-* `v29.2.knots20251110` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
+*
+* `v29.2.knots20251110` 
 * `v29.2`
 *
 * `v29.1.inq`
