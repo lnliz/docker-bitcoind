@@ -26,22 +26,21 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
-* `v30.2`
+* `v30.2` (most current)
 *
-* `v29.3`
-* `v29.3.knots20260210` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
 * `v29.2.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
-*
-* `v29.2.knots20251110` 
-* `v29.2`
-*
 * `v29.1.inq`
-* `v29.1`
 *
+* `v29.3.knots20260210` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
+* `v29.2.knots20251110` 
+*
+* `v29.3` (most current 29.x) 
+* `v29.2`
+* `v29.1`
 * `v29.0`
 *
-* `v28.3` (recent release)
-*
+* `v28.4` (most current 28.x)
+* `v28.3`
 * `v28.2`
 * `v28.1`
 * `v28.0`
