@@ -189,6 +189,29 @@ jobs:
       - name: Push manifest
         run: docker manifest push "$SLUG:$VERSION"
 
+      - name: Tag and push variant-latest manifest
+        run: |
+          if echo "$VERSION" | grep -q "knots"; then
+            LATEST_TAG="knots-latest"
+          elif echo "$VERSION" | grep -q "inq"; then
+            LATEST_TAG="inq-latest"
+          else
+            LATEST_TAG="core-latest"
+          fi
+
+          echo "Tagging $SLUG:$LATEST_TAG -> $VERSION"
+
+          docker -D manifest create "$SLUG:$LATEST_TAG" \
+            "$SLUG:$VERSION-amd64" \
+            "$SLUG:$VERSION-arm32v7" \
+            "$SLUG:$VERSION-arm64v8"
+
+          docker manifest annotate "$SLUG:$LATEST_TAG" "$SLUG:$VERSION-arm32v7" --os linux --arch arm   --variant v7
+          docker manifest annotate "$SLUG:$LATEST_TAG" "$SLUG:$VERSION-arm64v8" --os linux --arch arm64 --variant v8
+
+          docker manifest inspect "$SLUG:$LATEST_TAG" | jq '.'
+          docker manifest push "$SLUG:$LATEST_TAG"
+
       - name: Create & print SHA256SUMS file
         run: |
           (cd docker-images;  sha256sum *) >> ./SHA256SUMS
