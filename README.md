@@ -34,7 +34,8 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
-* `v31.0` (most current)
+* `v31.1` (most current)
+* `v31.0`
 *
 * `v30.2` 
 *
@@ -67,7 +68,7 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 First pull the image from [Docker Hub]:
 
 ```bash
-docker pull lnliz/bitcoind:v31.0
+docker pull lnliz/bitcoind:v31.1
 ```
 
 > **NOTE:** Running above will automatically choose native architecture of your CPU.
@@ -77,7 +78,7 @@ docker pull lnliz/bitcoind:v31.0
 Or, to pull a specific CPU architecture:
 
 ```bash
-docker pull lnliz/bitcoind:v31.0-arm64v8
+docker pull lnliz/bitcoind:v31.1-arm64v8
 ```
 
 #### Start
@@ -98,7 +99,7 @@ docker run  -it  --rm  --detach \
     -p 28332:28332 \
     -p 28333:28333 \
     --name bitcoind \
-    lnliz/bitcoind:v31.0
+    lnliz/bitcoind:v31.1
 ```
 
 That will run bitcoind such that:
@@ -161,7 +162,7 @@ services:
   bitcoin:
     container_name: bitcoind
     user: 1000:1000
-    image: lnliz/bitcoind:v31.0
+    image: lnliz/bitcoind:v31.1
     volumes:
       - ./bitcoin:/data/.bitcoin
     restart: on-failure
