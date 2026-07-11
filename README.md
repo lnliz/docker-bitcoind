@@ -37,6 +37,7 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v31.1` (most current)
 * `v31.0`
 *
+* `v30.3` (most current 30.x)
 * `v30.2` 
 *
 * `v29.2.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
@@ -46,7 +47,8 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v29.3.knots20260210`
 * `v29.2.knots20251110` 
 *
-* `v29.3` (most current 29.x) 
+* `v29.4` (most current 29.x)
+* `v29.3`
 * `v29.2`
 * `v29.1`
 * `v29.0`
@@ -217,4 +219,3 @@ sudo chown -R 1000.1000 $HOME/.bitcoin
 
 
 > The work here was initially based on [lncm/docker-bitcoind](https://github.com/lncm/docker-bitcoind/), but has diverged since.
-
