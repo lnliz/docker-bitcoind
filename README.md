@@ -40,7 +40,8 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v30.3` (most current 30.x)
 * `v30.2` 
 *
-* `v29.2.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
+* `v29.4.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
+* `v29.2.inq`
 * `v29.1.inq`
 *
 * `v29.3.knots20260508` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
@@ -121,7 +122,7 @@ That will run bitcoind such that:
 You can also use [Bitcoin Inquisition](https://github.com/bitcoin-inquisition/bitcoin) by using different image tag:
 
 ```bash
-docker pull lnliz/bitcoind:v29.1.inq
+docker pull lnliz/bitcoind:v29.4.inq
 ```
 
 
