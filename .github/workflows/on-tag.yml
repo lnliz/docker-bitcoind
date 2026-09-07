@@ -200,9 +200,7 @@ jobs:
 
       - name: Tag and push variant-latest manifest
         run: |
-          if echo "$VERSION" | grep -q "knots"; then
-            LATEST_TAG="knots-latest"
-          elif echo "$VERSION" | grep -q "inq"; then
+          if echo "$VERSION" | grep -q "inq"; then
             LATEST_TAG="inq-latest"
           else
             LATEST_TAG="core-latest"

@@ -45,6 +45,8 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v29.1.inq`
 *
 * `v29.4.1.knots20260508` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
+* (v29.4.1.knots20260508 is not compatible with previous version because of change in hashong algorithm)
+*
 * `v29.4.knots20260508`
 * `v29.3.knots20260508`
 * `v29.3.knots20260210`
