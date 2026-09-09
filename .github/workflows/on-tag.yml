@@ -199,6 +199,7 @@ jobs:
         run: docker manifest push "$SLUG:$VERSION"
 
       - name: Tag and push variant-latest manifest
+        if: ${{ !contains(env.VERSION, 'knots') }}
         run: |
           if echo "$VERSION" | grep -q "inq"; then
             LATEST_TAG="inq-latest"
