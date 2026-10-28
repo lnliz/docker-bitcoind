@@ -26,7 +26,6 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 
 ### Latest version
 
-* `knots-latest` (latest current version of Bitcoin Knots)
 * `core-latest` (latest current version of Bitcoin Core)
 * `inq-latest` (latest current version of Bitcoin Inquisition)
 
@@ -34,25 +33,27 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lnliz/bitcoind/tags
 
-* `v31.1` (most current)
+* `v32.1` (most current)
+*
+* `v31.2` (most current 31.x)
+* `v31.1`
 * `v31.0`
 *
-* `v30.3` (most current 30.x)
+* `v30.4` (most current 30.x)
+* `v30.3`
 * `v30.2` 
 *
 * `v29.4.inq` ([inquisition](https://github.com/bitcoin-inquisition/bitcoin) - most current)
 * `v29.2.inq`
 * `v29.1.inq`
 *
-* `v29.4.1.knots20260508` ([knots](https://github.com/bitcoinknots/bitcoin)  - most current)
-* (v29.4.1.knots20260508 is not compatible with previous version because of change in hashong algorithm)
-*
 * `v29.4.knots20260508`
 * `v29.3.knots20260508`
 * `v29.3.knots20260210`
 * `v29.2.knots20251110` 
 *
-* `v29.4` (most current 29.x)
+* `v29.5` (most current 29.x)
+* `v29.4`
 * `v29.3`
 * `v29.2`
 * `v29.1`
@@ -67,6 +68,18 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 * `v27.2`
 
 
+## Local build
+
+Build an image without pushing it to a registry:
+
+```bash
+docker build --build-arg BUILD_JOBS=2 -t bitcoind-local:32.1 32.1/
+docker run --rm bitcoind-local:32.1 --version
+```
+
+`BUILD_JOBS` limits the compile jobs per image. If omitted, the build uses the
+available CPU count. Set a lower value when building versions in parallel.
+
 
 ## Usage
 
@@ -75,7 +88,7 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 First pull the image from [Docker Hub]:
 
 ```bash
-docker pull lnliz/bitcoind:v31.1
+docker pull lnliz/bitcoind:v32.1
 ```
 
 > **NOTE:** Running above will automatically choose native architecture of your CPU.
@@ -85,7 +98,7 @@ docker pull lnliz/bitcoind:v31.1
 Or, to pull a specific CPU architecture:
 
 ```bash
-docker pull lnliz/bitcoind:v31.1-arm64v8
+docker pull lnliz/bitcoind:v32.1-arm64v8
 ```
 
 #### Start
@@ -106,7 +119,7 @@ docker run  -it  --rm  --detach \
     -p 28332:28332 \
     -p 28333:28333 \
     --name bitcoind \
-    lnliz/bitcoind:v31.1
+    lnliz/bitcoind:v32.1
 ```
 
 That will run bitcoind such that:
@@ -135,7 +148,7 @@ docker pull lnliz/bitcoind:v29.4.inq
 You can also use [Bitcoin Knots](https://github.com/bitcoinknots/bitcoin) by using different image tag:
 
 ```bash
-docker pull lnliz/bitcoind:v29.1.knots20250903
+docker pull lnliz/bitcoind:v29.4.knots20260508
 ```
 
 
@@ -169,7 +182,7 @@ services:
   bitcoin:
     container_name: bitcoind
     user: 1000:1000
-    image: lnliz/bitcoind:v31.1
+    image: lnliz/bitcoind:v32.1
     volumes:
       - ./bitcoin:/data/.bitcoin
     restart: on-failure
