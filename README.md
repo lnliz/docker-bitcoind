@@ -35,11 +35,13 @@ This repo builds [`bitcoind`] in an [auditable way](https://github.com/lnliz/doc
 
 * `v32.1` (most current)
 *
-* `v31.2` (most current 31.x)
+* `v31.3` (most current 31.x)
+* `v31.2`
 * `v31.1`
 * `v31.0`
 *
-* `v30.4` (most current 30.x)
+* `v30.5` (most current 30.x)
+* `v30.4`
 * `v30.3`
 * `v30.2` 
 *
